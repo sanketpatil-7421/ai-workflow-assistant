@@ -1,51 +1,110 @@
-Local Command-Driven AI Agent FrameworkA zero-dependency, lightweight, rule-based command interpreter built in pure Python.This repository contains a modular Python implementation of an offline, rule-based command execution framework. The architecture parses incoming text streams, matches them against registered intent signatures (hello, date, bye), and executes low-latency local actions without relying on external API keys, large language models (LLMs), or cloud infrastructure.Architecture Overview                         +-------------------------+
-                         |       User Input        |
-                         +------------+------------+
-                                      |
-                                      v
-                         +-------------------------+
-                         | Input Normalization     |
-                         | (.strip().lower())      |
-                         +------------+------------+
-                                      |
-                                      v
-                         +-------------------------+
-                         | Intent Resolution       |
-                         | (Pattern Matching)      |
-                         +--+----------+--------+--+
-                            |          |        |
-            +---------------+          |        +---------------+
-            v                          v                        v
-    +---------------+          +---------------+        +---------------+
-    | Hello Handler |          | Date Handler  |        | Bye Handler   |
-    | (Greeting)    |          | (system time) |        | (Termination) |
-    +-------+-------+          +-------+-------+        +-------+-------+
-            |                          |                        |
-            +-------------------+------+------------------------+
-                                |
-                                v
-                         +-------------------------+
-                         | Output Serialization    |
-                         | & Loop Control          |
-                         +-------------------------+
-Key CapabilitiesDeterministic Execution: Eliminates non-deterministic LLM hallucinations and latency bottlenecks through strict pattern-matching.Zero External Dependencies: Built using strictly core standard libraries (datetime). No pip install required.Air-Gapped & Offline Ready: Requires zero network permissions, API keys, or external telemetry—ideal for edge environments.Time System Integration: Interacts directly with system runtime primitives to derive precise temporal metrics.Interactive REPL Interface: Contains a built-in Read-Eval-Print Loop (REPL) for continuous command execution and state-based program exit control.File Structure.
-├── main.py            # Primary runtime entry point and intent resolver
-├── README.md          # Comprehensive framework documentation
-└── LICENSE            # MIT License
-Supported Command SpecificationCommand TriggerSystem ActionTarget Output Examplehello / hiTriggers the local greeting module"Hello! How can I help you today?"date / timeReads datetime.now() from local system clock"Today's date is Wednesday, August 19, 2026..."bye / exitSignals loop termination context and shuts down"Goodbye! Have a great day."FallbackHandles unrecognized strings gracefully"Unknown command: '...'"Installation & System RequirementsPrerequisitesPython: 3.8 or higherOS Compatibility: Linux, macOS, or WindowsSetup InstructionsClone or download the repository:Bashgit clone https://github.com/your-username/local-command-agent.git
-cd local-command-agent
-Run the executable directly via Python CLI:Bashpython main.py
-Example UsagePlaintextAgent started. Type 'hello', 'date', or 'bye' (or 'exit' to quit).
+# 🤖 Local Command AI Agent
 
-You: hello
-Agent: Hello! How can I help you today?
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg)](#features)
 
-You: What is the current date?
-Agent: Today's date is Wednesday, August 19, 2026 and the current time is 10:29 PM.
+A lightweight, zero-dependency Python AI agent that runs 100% locally in your terminal. It executes commands like greetings, system time retrieval, and graceful exits without needing API keys, cloud services, or an internet connection.
 
-You: bye
-Agent: Goodbye! Have a great day.
-Advanced Configuration & ExtensionTo add custom handlers to the routing pipeline, register a new condition in the decision tree inside main.py:Python# Custom Module Extension Example
-elif "status" in cmd:
-    # Query system primitives
-    return "System status: ALL_SYSTEMS_OPERATIONAL"
+---
+
+## 📐 Architecture & Logic Flow
+
+                  +----------------------+
+                  |      User Input      |
+                  +----------+-----------+
+                             |
+                             v
+                  +----------------------+
+                  | Normalize Text Input |
+                  |  (.strip().lower())  |
+                  +----------+-----------+
+                             |
+                             v
+                  +----------------------+
+                  |   Intent Evaluator   |
+                  +---+------+--------+--+
+                      |      |        |
+      +---------------+      |        +---------------+
+      | ("hello")            | ("date")               | ("bye")
+      v                      v                        v
++-------------------+  +--------------------+  +--------------------+
+|  Greeting Module  |  |  Datetime Module   |  |   Exit Pipeline    |
+| Return String Msg |  | Query System Clock |  | Close Terminal Loop|
++---------+---------+  +---------+----------+  +---------+----------+
+|                      |                        |
++-------------------+--+------------------------+
+|
+v
++----------------------+
+|   Terminal Output    |
++----------------------+
+
+
+---
+
+## ⚡ Features
+
+* **Zero External Dependencies:** Uses only built-in Python standard libraries (`datetime`).
+* **100% Offline & Private:** No API keys, cloud calls, or internet connection required.
+* **Instant Processing:** Deterministic rule-matching guarantees sub-millisecond execution.
+* **Interactive CLI Loop:** Continuous REPL loop for seamless terminal interaction.
+
+---
+
+## 📋 Supported Commands
+
+| Command Category | Input Triggers | Internal Action | Output Response |
+| :--- | :--- | :--- | :--- |
+| **Greeting** | `hello`, `hi` | Matches greeting keyword | `"Hello! How can I help you today?"` |
+| **Date & Time** | `date`, `time` | Reads system time via `datetime` | `"Today's date is Wednesday, August 19, 2026..."` |
+| **Exit** | `bye`, `exit` | Sets loop condition to terminate | `"Goodbye! Have a great day."` |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+* Python 3.8 or higher installed on your system.
+
+### Running the Agent
+
+1. Clone this repository:
+   ```bash
+   git clone [https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git)
+   cd YOUR-REPOSITORY-NAME
+Execute the Python script directly:
+
+Bash
+python main.py
+🛠️ Code Overview
+project-root/
+│
+├── main.py          # Core engine and command router
+├── README.md        # Documentation and diagrams
+└── LICENSE          # MIT License
+Python
+import datetime
+
+def simple_agent(command: str) -> str:
+    cmd = command.strip().lower()
+
+    if "hello" in cmd or "hi" in cmd:
+        return "Hello! How can I help you today?"
+    elif "date" in cmd or "time" in cmd:
+        now = datetime.datetime.now()
+        return f"Today's date is {now.strftime('%A, %B %d, %Y')} and the current time is {now.strftime('%I:%M %p')}."
+    elif "bye" in cmd or "exit" in cmd:
+        return "Goodbye! Have a great day."
+    else:
+        return f"Unknown command: '{command}'. Try saying 'hello', 'date', or 'bye'."
+
+if __name__ == "__main__":
+    print("Agent started. Type 'hello', 'date', or 'bye' (or 'exit' to quit).")
+    while True:
+        user_input = input("\nYou: ")
+        response = simple_agent(user_input)
+        print(f"Agent: {response}")
+        
+        if "bye" in user_input.lower() or "exit" in user_input.lower():
+            break
