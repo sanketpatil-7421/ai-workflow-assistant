@@ -1,12 +1,85 @@
-# Contribution Log
+Markdown
+# Contributing to Local Command AI Agent
 
-## AI Workflow Assistant
+Thank you for taking the time to contribute! This document provides guidelines, code style rules, and a detailed contribution workflow log for extending this local agent.
 
-| Date | Contributor | Contribution / Task | Details | Status |
-|---|---|---|---|---|
-| 19-Aug-2026 | Team Member | Requirement Analysis | Identified workflow-assistant requirements and key user interactions. | Completed |
-| 19-Aug-2026 | Team Member | Workflow Design | Designed the overall AI workflow, including input, processing, decision-making, and output stages. | Completed |
-| 19-Aug-2026 | Team Member | AI Integration | Planned integration of AI capabilities for task understanding and automated workflow execution. | In Progress |
-| 19-Aug-2026 | Team Member | User Interface | Designed the interface for creating, monitoring, and managing workflows. | In Progress |
-| 19-Aug-2026 | Team Member | Testing | Prepared test scenarios for workflow execution and AI-generated responses. | Pending |
-| 19-Aug-2026 | Team Member | Documentation | Documented system features, workflow logic, and implementation approach. | In Progress |
+---
+
+## 📊 Contribution Workflow Architecture
+
+[ Issue / Feature Idea ]
+|
+v
+[ Fork & Branch Setup ]  --->  git checkout -b feature/your-feature-name
+|
+v
+[ Local Development ]   --->  Update main.py & test commands locally
+|
+v
+[ Commit & Document ]   --->  Follow Conventional Commits (e.g., feat:, fix:)
+|
+v
+[ Push & Open PR ]      --->  Create Pull Request to main branch
+|
+v
+[ Code Review & Merge]  --->  Maintainer review & merge into production
+
+
+---
+
+## 📜 Repository Contribution Log
+
+All notable contributions, pull requests, and architectural updates are logged below in reverse chronological order.
+
+| Date | Version | Contributor | Type | Description / Commit Scope |
+| :--- | :--- | :--- | :--- | :--- |
+| **2026-08-19** | `v1.2.0` | `@contributor` | `feat` | Added `CONTRIBUTING.md` and repository setup documentation. |
+| **2026-08-15** | `v1.1.0` | `@contributor` | `feat` | Integrated ASCII runtime architecture diagrams into `README.md`. |
+| **2026-08-10** | `v1.0.1` | `@contributor` | `fix` | Standardized date string formatting to 12-hour AM/PM system. |
+| **2026-08-01** | `v1.0.0` | `@maintainer` | `init` | Initial release: Core CLI engine handling `hello`, `date`, and `bye`. |
+
+---
+
+## 🚀 How to Contribute
+
+### 1. Set Up Your Local Environment
+
+1. **Fork the Repository** on GitHub.
+2. **Clone your fork** locally:
+   ```bash
+   git clone [https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git)
+   cd YOUR-REPOSITORY-NAME
+Create a topic branch:
+
+Bash
+git checkout -b feature/add-new-command
+2. Adding a New Command
+To add a new command to the agent, update the decision router inside main.py:
+
+Python
+# 1. Add your keyword handling condition
+elif "weather" in cmd:
+    return "Weather module is running offline. Current status: Clear skies."
+3. Commit Guidelines
+Please use clear Conventional Commit messages:
+
+feat: A new feature or command handler (e.g., feat: add status command handler).
+
+fix: A bug fix or syntax correction (e.g., fix: strip trailing spaces on input).
+
+docs: Documentation changes only (e.g., docs: update command table in README).
+
+refactor: Code restructuring without changing behavior.
+
+4. Submitting a Pull Request (PR)
+Push your branch to GitHub:
+
+Bash
+git push origin feature/add-new-command
+Open a Pull Request against the main branch.
+
+Ensure your PR description clearly states:
+
+What command or fix was added.
+
+Steps to test the change in the terminal loop.
