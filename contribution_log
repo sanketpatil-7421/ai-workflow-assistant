@@ -1,0 +1,12 @@
+# Contribution Log
+
+## AI Workflow Assistant
+
+| Date | Contributor | Contribution / Task | Details | Status |
+|---|---|---|---|---|
+| 19-Aug-2026 | Team Member | Requirement Analysis | Identified workflow-assistant requirements and key user interactions. | Completed |
+| 19-Aug-2026 | Team Member | Workflow Design | Designed the overall AI workflow, including input, processing, decision-making, and output stages. | Completed |
+| 19-Aug-2026 | Team Member | AI Integration | Planned integration of AI capabilities for task understanding and automated workflow execution. | In Progress |
+| 19-Aug-2026 | Team Member | User Interface | Designed the interface for creating, monitoring, and managing workflows. | In Progress |
+| 19-Aug-2026 | Team Member | Testing | Prepared test scenarios for workflow execution and AI-generated responses. | Pending |
+| 19-Aug-2026 | Team Member | Documentation | Documented system features, workflow logic, and implementation approach. | In Progress |
