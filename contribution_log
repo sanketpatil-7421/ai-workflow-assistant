@@ -1,85 +1,66 @@
-Markdown
-# Contributing to Local Command AI Agent
+Here is a small CONTRIBUTING.md contribution log tailored to your Python calculator code:
 
-Thank you for taking the time to contribute! This document provides guidelines, code style rules, and a detailed contribution workflow log for extending this local agent.
+CONTRIBUTING.md
+Contributing to Python Calculator
 
----
+Thank you for contributing to this project! This document explains how to add features and improvements to the calculator.
 
-## 📊 Contribution Workflow Architecture
+📊 Contribution Workflow
+[ Feature / Bug Idea ]
+          |
+          v
+[ Create Branch ]
+          |
+          v
+[ Update calculator.py ]
+          |
+          v
+[ Test Calculator ]
+          |
+          v
+[ Commit Changes ]
+          |
+          v
+[ Push & Pull Request ]
 
-[ Issue / Feature Idea ]
-|
-v
-[ Fork & Branch Setup ]  --->  git checkout -b feature/your-feature-name
-|
-v
-[ Local Development ]   --->  Update main.py & test commands locally
-|
-v
-[ Commit & Document ]   --->  Follow Conventional Commits (e.g., feat:, fix:)
-|
-v
-[ Push & Open PR ]      --->  Create Pull Request to main branch
-|
-v
-[ Code Review & Merge]  --->  Maintainer review & merge into production
+📜 Contribution Log
+Date	Version	Contributor	Type	Description
+2026-08-20	v1.0.0	@contributor	init	Initial calculator with basic arithmetic operations.
+2026-08-20	v1.0.1	@contributor	fix	Added division-by-zero handling.
+2026-08-20	v1.1.0	@contributor	feat	Added invalid-operation handling.
+🚀 How to Contribute
+1. Create a Branch
+git checkout -b feature/new-operation
+
+2. Update the Calculator
+
+For example, add a new operation inside calculator():
+
+elif operation == "%":
+    return a % b
+
+3. Test Your Changes
+python calculator.py
 
 
----
+Test addition, subtraction, multiplication, division, invalid operations, and division by zero.
 
-## 📜 Repository Contribution Log
+4. Commit Changes
 
-All notable contributions, pull requests, and architectural updates are logged below in reverse chronological order.
+Use clear commit messages:
 
-| Date | Version | Contributor | Type | Description / Commit Scope |
-| :--- | :--- | :--- | :--- | :--- |
-| **2026-08-19** | `v1.2.0` | `@contributor` | `feat` | Added `CONTRIBUTING.md` and repository setup documentation. |
-| **2026-08-15** | `v1.1.0` | `@contributor` | `feat` | Integrated ASCII runtime architecture diagrams into `README.md`. |
-| **2026-08-10** | `v1.0.1` | `@contributor` | `fix` | Standardized date string formatting to 12-hour AM/PM system. |
-| **2026-08-01** | `v1.0.0` | `@maintainer` | `init` | Initial release: Core CLI engine handling `hello`, `date`, and `bye`. |
+feat: add modulo operation
+fix: handle division by zero
+docs: update README
 
----
+5. Push and Create a Pull Request
+git push origin feature/new-operation
 
-## 🚀 How to Contribute
 
-### 1. Set Up Your Local Environment
+Then create a Pull Request to the main branch.
 
-1. **Fork the Repository** on GitHub.
-2. **Clone your fork** locally:
-   ```bash
-   git clone [https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git)
-   cd YOUR-REPOSITORY-NAME
-Create a topic branch:
-
-Bash
-git checkout -b feature/add-new-command
-2. Adding a New Command
-To add a new command to the agent, update the decision router inside main.py:
-
-Python
-# 1. Add your keyword handling condition
-elif "weather" in cmd:
-    return "Weather module is running offline. Current status: Clear skies."
-3. Commit Guidelines
-Please use clear Conventional Commit messages:
-
-feat: A new feature or command handler (e.g., feat: add status command handler).
-
-fix: A bug fix or syntax correction (e.g., fix: strip trailing spaces on input).
-
-docs: Documentation changes only (e.g., docs: update command table in README).
-
-refactor: Code restructuring without changing behavior.
-
-4. Submitting a Pull Request (PR)
-Push your branch to GitHub:
-
-Bash
-git push origin feature/add-new-command
-Open a Pull Request against the main branch.
-
-Ensure your PR description clearly states:
-
-What command or fix was added.
-
-Steps to test the change in the terminal loop.
+✅ Contribution Guidelines
+Keep the code simple and readable.
+Test new features before submitting.
+Do not add unnecessary dependencies.
+Clearly describe changes in the Pull Request.
